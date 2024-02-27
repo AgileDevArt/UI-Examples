@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Winforms": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false
+    }
+  }
+}

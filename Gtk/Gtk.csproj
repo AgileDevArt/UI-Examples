@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<None Remove="**\*.glade" />
+	<EmbeddedResource Include="**\*.glade">
+		<LogicalName>%(Filename)%(Extension)</LogicalName>
+		<DependentUpon>%(Filename).cs</DependentUpon>
+	</EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GtkSharp" Version="3.24.24.95" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Employees\Employees.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,49 @@
+﻿<Window x:Name="Employees" x:Class="Wpf.EmployeeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf"
+        mc:Ignorable="d"
+        Title="Employees" Height="421" Width="347" ResizeMode="NoResize"
+        FocusManager.FocusedElement="{Binding ElementName=dataGrid}">
+    <Window.Resources>
+        <Style x:Key="TextCenter" TargetType="{x:Type DataGridCell}" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Button x:Name="buttonUndo" Content="Undo" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.436,-0.062" Width="82" Height="30" Click="undo_Click"/>
+        <Button x:Name="buttonRedo" Content="Redo" HorizontalAlignment="Left" Margin="97,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.436,-0.062" Width="82" Height="30" Click="redo_Click"/>
+        <Button x:Name="buttonAbout" Content="About" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" RenderTransformOrigin="-0.436,-0.062" Width="82" Height="30" Click="about_Click"/>
+        <DataGrid x:Name="dataGrid" Margin="10,45,10,72" IsReadOnly="True" SelectionMode="Single" SelectionChanged="dataGrid_SelectionChanged" ColumnWidth="*" Loaded="dataGrid_Loaded" SelectedIndex="-1" AutoGenerateColumns="False">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{Binding Path=Color, Source={x:Static SystemColors.HighlightBrush}}"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White"/>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="Auto" Header="Image" CanUserResize="False" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Stretch="None" RenderOptions.BitmapScalingMode="Fant" Source="{Binding Image, Converter={x:Static local:ImageConverter.Instance}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Width="*" Header="Id" CanUserResize="False" Binding="{Binding Id}" CellStyle="{StaticResource TextCenter}"/>
+                <DataGridTextColumn Width="*" Header="Name" CanUserResize="False" Binding="{Binding Name}" CellStyle="{StaticResource TextCenter}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="textId" Margin="59,0,10,45" TextWrapping="Wrap" VerticalAlignment="Bottom" PreviewTextInput="textId_PreviewTextInput"/>
+        <TextBox x:Name="textName" Margin="59,0,10,14" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+        <Label x:Name="labelId" Content="Id:" HorizontalAlignment="Left" Margin="10,0,0,41" VerticalAlignment="Bottom"/>
+        <Label x:Name="labelName" Content="Name:" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
+    </Grid>
+</Window>

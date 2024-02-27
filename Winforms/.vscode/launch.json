@@ -1,0 +1,49 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Wine Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "Z:/mnt/${workspaceFolder}/bin/Debug/net5.0-windows/MVC.exe",
+            "args": [],
+            "cwd": "Z:/mnt/${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "pipeTransport": {
+                "pipeCwd": "${workspaceFolder}",
+                "pipeProgram": "wsl.exe",
+                "debuggerPath": "wine64 ~/.vs-debugger/vsdbg.exe"
+            }
+        },
+        {
+            "name": ".NET Wine Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processName": "MVC.exe",
+            "pipeTransport": {
+                "pipeCwd": "${workspaceFolder}",
+                "pipeProgram": "wsl.exe",
+                "debuggerPath": "wine64 ~/.vs-debugger/vsdbg.exe"
+            }
+        },
+        {
+            "name": ".NET Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net5.0-windows/MVC.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Wpf": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false
+    }
+  }
+}
